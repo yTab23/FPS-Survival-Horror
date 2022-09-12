@@ -9,12 +9,15 @@ public class LightSettingsPlayer : MonoBehaviour
     [SerializeField] PostProcessProfile Standard;
     [SerializeField] PostProcessProfile NightVision;
     [SerializeField] GameObject NightVisionOverlay;
+    [SerializeField] GameObject FlashLight;
 
     private bool NightVisionActive = false;
+    private bool FlashLightActive = false;
 
     private void Start() 
     {
         NightVisionOverlay.gameObject.SetActive(false);
+        FlashLight.gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +35,21 @@ public class LightSettingsPlayer : MonoBehaviour
                 MyVolume.profile = Standard;
                 NightVisionActive = false;
                 NightVisionOverlay.gameObject.SetActive(false);
+            }
+
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            if(FlashLightActive == false)
+            {
+                FlashLightActive = true;
+                FlashLight.gameObject.SetActive(true);
+            }
+            else
+            {
+                FlashLightActive = false;
+                FlashLight.gameObject.SetActive(false);
             }
 
         }
