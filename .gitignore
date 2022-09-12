@@ -73,3 +73,30 @@ crashlytics-build.properties
 Assets/Flooded_Grounds/
 Assets/_TerrainAutoUpgrade/
 Assets/Graphics/
+Assets/SampleScenes/
+Assets/Standard Assets/2D/
+Assets/Standard Assets/Vehicles/Car/Textures/SkyCarWheelNormals.png.meta
+Assets/Standard Assets/Vehicles/
+Assets/Standard Assets/Prototyping/
+Assets/Standard Assets/PhysicsMaterials/
+Assets/Standard Assets/ParticleSystems/
+Assets/Standard Assets/Environment/
+Assets/Standard Assets/Effects/
+Assets/Standard Assets/CrossPlatformInput/
+Assets/Standard Assets/Characters/RollerBall/Prefabs/RollerBall.prefab.meta
+Assets/Standard Assets/Characters/RollerBall/
+Assets/Standard Assets/Characters/ThirdPersonCharacter/
+Assets/Standard Assets/Fonts/
+Assets/Standard Assets/Editor/Water.meta
+Assets/Standard Assets/Editor/
+Assets/Standard Assets/Cameras/
+Assets/Standard Assets/Vehicles.meta
+Assets/Standard Assets/Prototyping.meta
+Assets/Standard Assets/Fonts.meta
+Assets/Standard Assets/ParticleSystems.meta
+Assets/Standard Assets/PhysicsMaterials.meta
+Assets/Standard Assets/CrossPlatformInput.meta
+Assets/Standard Assets/Editor.meta
+Assets/Standard Assets/Effects.meta
+Assets/Standard Assets/Environment.meta
+Assets/Standard Assets/2D.meta
