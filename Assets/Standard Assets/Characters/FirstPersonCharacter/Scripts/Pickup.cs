@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform playerCarryTransform;
+
+    private bool isCarrying = false;
+
+    void OnKeyDown()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out hit))
+        {   
+            if(isCarrying == false)
             {
-                if(hit.transform.CompareTag("Carryable"))
-                {
-                    this.transform.parent = hit.transform;
-                }
+                GetComponent<BoxCollider>().enabled = false;
+                this.transform.position = playerCarryTransform.position;
+                this.transform.parent = GameObject.Find("CarryObject").transform;
+                GetComponent<Rigidbody>().isKinematic = true;
+                isCarrying = true;
             }
-            
+            else
+            {
+                this.transform.parent = null;
+                GetComponent<BoxCollider>().enabled = true;
+                GetComponent<Rigidbody>().isKinematic = false;
+                isCarrying = false;
+            }
         }
     }
 }
