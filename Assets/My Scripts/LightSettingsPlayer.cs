@@ -5,54 +5,77 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class LightSettingsPlayer : MonoBehaviour
 {
-    [SerializeField] PostProcessVolume MyVolume;
-    [SerializeField] PostProcessProfile Standard;
-    [SerializeField] PostProcessProfile NightVision;
-    [SerializeField] GameObject NightVisionOverlay;
-    [SerializeField] GameObject FlashLight;
+    [SerializeField]
+    PostProcessVolume MyVolume;
+
+    [SerializeField]
+    PostProcessProfile Standard;
+
+    [SerializeField]
+    PostProcessProfile NightVision;
+
+    [SerializeField]
+    GameObject NightVisionOverlay;
+
+    [SerializeField]
+    GameObject FlashLight;
 
     private bool NightVisionActive = false;
     private bool FlashLightActive = false;
 
-    private void Start() 
+    private void Start()
     {
         NightVisionOverlay.gameObject.SetActive(false);
         FlashLight.gameObject.SetActive(false);
     }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+        if (SaveScript.BatteryPower > 0.0f)
         {
-            if(NightVisionActive == false)
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                MyVolume.profile = NightVision;
-                NightVisionActive = true;
-                NightVisionOverlay.gameObject.SetActive(true);
+                if (NightVisionActive == false)
+                {
+                    MyVolume.profile = NightVision;
+                    NightVisionActive = true;
+                    NightVisionOverlay.gameObject.SetActive(true);
+                    SaveScript.NVLightOn = true;
+                }
+                else
+                {
+                    MyVolume.profile = Standard;
+                    NightVisionActive = false;
+                    NightVisionOverlay.gameObject.SetActive(false);
+                    SaveScript.NVLightOn = false;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.L))
             {
-                MyVolume.profile = Standard;
-                NightVisionActive = false;
-                NightVisionOverlay.gameObject.SetActive(false);
+                if (FlashLightActive == false)
+                {
+                    FlashLightActive = true;
+                    FlashLight.gameObject.SetActive(true);
+                    SaveScript.FlashLightOn = true;
+                }
+                else
+                {
+                    FlashLightActive = false;
+                    FlashLight.gameObject.SetActive(false);
+                    SaveScript.FlashLightOn = false;
+                }
             }
-
         }
-
-        if(Input.GetKeyDown(KeyCode.L))
+        if (SaveScript.BatteryPower <= 0.0f)
         {
-            if(FlashLightActive == false)
-            {
-                FlashLightActive = true;
-                FlashLight.gameObject.SetActive(true);
-            }
-            else
-            {
-                FlashLightActive = false;
-                FlashLight.gameObject.SetActive(false);
-            }
-
+            FlashLightActive = false;
+            FlashLight.gameObject.SetActive(false);
+            SaveScript.FlashLightOn = false;
+            MyVolume.profile = Standard;
+            NightVisionActive = false;
+            NightVisionOverlay.gameObject.SetActive(false);
+            SaveScript.NVLightOn = false;
         }
-
     }
 }
