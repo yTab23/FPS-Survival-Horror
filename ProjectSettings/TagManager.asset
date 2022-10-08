@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Carryable
+  - Apple
   layers:
   - Default
   - TransparentFX
