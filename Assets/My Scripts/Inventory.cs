@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private GameObject UIInventory;
-    private bool isActive = false;
+    private bool inventoryActive = false;
     // Start is called before the first frame update
     void Start()
     {
         UIInventory.SetActive(false);
-        isActive = false;
-        Cursor.visible = false;
+        inventoryActive = false;
     }
 
     // Update is called once per frame
@@ -20,19 +19,21 @@ public class Inventory : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
-            if(isActive == false)
+            if(inventoryActive == false)
             {
                 UIInventory.SetActive(true);
-                isActive = true;
+                inventoryActive = true;
                 Time.timeScale = 0f;
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
-            else if(isActive == true)
+            else if(inventoryActive == true)
             {
                 UIInventory.SetActive(false);
-                isActive = false;
+                inventoryActive = false;
                 Time.timeScale = 1f;
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
