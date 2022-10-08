@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject AppleImage1;
     [SerializeField] GameObject AppleButton1;
+    [SerializeField] GameObject BatteryImage1;
+    [SerializeField] GameObject BatteryButton1;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class Inventory : MonoBehaviour
 
         AppleImage1.gameObject.SetActive(false);
         AppleButton1.gameObject.SetActive(false);
+        BatteryImage1.gameObject.SetActive(false);
+        BatteryButton1.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,5 +60,29 @@ public class Inventory : MonoBehaviour
             AppleImage1.gameObject.SetActive(true);
             AppleButton1.gameObject.SetActive(true);
         }
+        if(SaveScript.Batteries == 1)
+        {
+            BatteryImage1.gameObject.SetActive(true);
+            BatteryButton1.gameObject.SetActive(true);
+        }
+    }
+
+    public void HealthUpdate()
+    {
+        SaveScript.PlayerHealth += 10;
+        SaveScript.HealthChanged = true;
+        SaveScript.Apples -= 1;
+
+        AppleImage1.gameObject.SetActive(false);
+        AppleButton1.gameObject.SetActive(false);
+    }
+    public void BatteryUpdate()
+    {
+        // SaveScript.PlayerHealth += 10;
+        // SaveScript.HealthChanged = true;
+        // SaveScript.Apples -= 1;
+
+        BatteryImage1.gameObject.SetActive(false);
+        BatteryButton1.gameObject.SetActive(false);
     }
 }
