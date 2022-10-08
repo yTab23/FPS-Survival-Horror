@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,18 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private GameObject UIInventory;
     private bool inventoryActive = false;
+
+    [SerializeField] GameObject AppleImage1;
+    [SerializeField] GameObject AppleButton1;
     // Start is called before the first frame update
     void Start()
     {
         UIInventory.SetActive(false);
         inventoryActive = false;
+        Cursor.visible = false;
+
+        AppleImage1.gameObject.SetActive(false);
+        AppleButton1.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +43,18 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
+        }
+
+        CheckInventory();
+        
+    }
+
+    private void CheckInventory()
+    {
+        if(SaveScript.Apples == 1)
+        {
+            AppleImage1.gameObject.SetActive(true);
+            AppleButton1.gameObject.SetActive(true);
         }
     }
 }
