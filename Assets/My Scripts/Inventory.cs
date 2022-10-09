@@ -94,15 +94,21 @@ public class Inventory : MonoBehaviour
 
     public void HealthUpdate()
     {
+        if(SaveScript.PlayerHealth == 100) return;
         SaveScript.PlayerHealth += 10;
         SaveScript.HealthChanged = true;
         SaveScript.Apples -= 1;
 
         AppleIcons[SaveScript.Apples].gameObject.SetActive(false);
         AppleButtons[SaveScript.Apples].gameObject.SetActive(false);
+
+        if(SaveScript.PlayerHealth > 100) SaveScript.PlayerHealth = 100;
+        
     }
+
     public void BatteryUpdate()
     {
+        if(SaveScript.BatteryPower == 1.0f) return;
         SaveScript.BatteryRefill = true;
         SaveScript.Batteries -= 1;
 
