@@ -22,7 +22,7 @@ public class Pickups : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, transform.forward, out hit, RayDistance))
         {
-            if(hit.transform.tag == "Apple" && SaveScript.Apples < 6)
+            if(hit.transform.tag == "Apple")
             {
                 CanSeePickup = true;
                 if(Input.GetKeyDown(KeyCode.E))
@@ -31,10 +31,10 @@ public class Pickups : MonoBehaviour
                     SaveScript.Apples += 1;
                 }
             }
-            else if(hit.transform.tag == "Battery" && SaveScript.Batteries < 4)
+            else if(hit.transform.tag == "Battery")
             {
                 CanSeePickup = true;
-                if(Input.GetKeyDown(KeyCode.E) )
+                if(Input.GetKeyDown(KeyCode.E))
                 {
                     Destroy(hit.transform.gameObject);
                     SaveScript.Batteries += 1;
