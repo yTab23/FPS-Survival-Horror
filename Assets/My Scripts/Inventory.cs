@@ -9,10 +9,13 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject UIInventory;
     private bool inventoryActive = false;
 
-    [SerializeField] GameObject AppleImage1;
-    [SerializeField] GameObject AppleButton1;
-    [SerializeField] GameObject BatteryImage1;
-    [SerializeField] GameObject BatteryButton1;
+    //Apples
+    [SerializeField] GameObject[] AppleIcons;
+    [SerializeField] GameObject[] AppleButtons;
+
+    //Batteries
+    [SerializeField] GameObject[] BatteryIcons;
+    [SerializeField] GameObject[] BatteryButtons;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +23,25 @@ public class Inventory : MonoBehaviour
         inventoryActive = false;
         Cursor.visible = false;
 
-        AppleImage1.gameObject.SetActive(false);
-        AppleButton1.gameObject.SetActive(false);
-        BatteryImage1.gameObject.SetActive(false);
-        BatteryButton1.gameObject.SetActive(false);
+        foreach(GameObject icon in BatteryIcons)
+        {
+            icon.SetActive(false);
+        }
+
+        foreach(GameObject button in BatteryButtons)
+        {
+            button.SetActive(false);
+        }
+
+        foreach(GameObject icon in AppleIcons)
+        {
+            icon.SetActive(false);
+        }
+
+        foreach(GameObject button in AppleButtons)
+        {
+            button.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -55,15 +73,22 @@ public class Inventory : MonoBehaviour
 
     private void CheckInventory()
     {
-        if(SaveScript.Apples == 1)
+        if(SaveScript.Batteries == Mathf.Clamp(SaveScript.Batteries, 1, 4))
         {
-            AppleImage1.gameObject.SetActive(true);
-            AppleButton1.gameObject.SetActive(true);
+           for(var i = 0; i < SaveScript.Batteries; i++)
+           {
+                BatteryIcons[i].gameObject.SetActive(true);
+                BatteryButtons[i].gameObject.SetActive(true);
+           }
         }
-        if(SaveScript.Batteries == 1)
+
+        if(SaveScript.Apples == Mathf.Clamp(SaveScript.Apples, 1, 6))
         {
-            BatteryImage1.gameObject.SetActive(true);
-            BatteryButton1.gameObject.SetActive(true);
+           for(var i = 0; i < SaveScript.Apples; i++)
+           {
+                AppleIcons[i].gameObject.SetActive(true);
+                AppleButtons[i].gameObject.SetActive(true);
+           }
         }
     }
 
@@ -73,16 +98,15 @@ public class Inventory : MonoBehaviour
         SaveScript.HealthChanged = true;
         SaveScript.Apples -= 1;
 
-        AppleImage1.gameObject.SetActive(false);
-        AppleButton1.gameObject.SetActive(false);
+        AppleIcons[SaveScript.Apples].gameObject.SetActive(false);
+        AppleButtons[SaveScript.Apples].gameObject.SetActive(false);
     }
     public void BatteryUpdate()
     {
-        // SaveScript.PlayerHealth += 10;
-        // SaveScript.HealthChanged = true;
-        // SaveScript.Apples -= 1;
+        SaveScript.BatteryRefill = true;
+        SaveScript.Batteries -= 1;
 
-        BatteryImage1.gameObject.SetActive(false);
-        BatteryButton1.gameObject.SetActive(false);
+        BatteryIcons[SaveScript.Batteries].gameObject.SetActive(false);
+        BatteryButtons[SaveScript.Batteries].gameObject.SetActive(false);
     }
 }
