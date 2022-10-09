@@ -8,6 +8,9 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private GameObject UIInventory;
     private bool inventoryActive = false;
+    private AudioSource MyPlayer;
+    [SerializeField] private AudioClip AppleBiteSound;
+    [SerializeField] private AudioClip BatteryChange;
 
     //Apples
     [SerializeField] GameObject[] AppleIcons;
@@ -42,6 +45,7 @@ public class Inventory : MonoBehaviour
         {
             button.SetActive(false);
         }
+        MyPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -95,6 +99,10 @@ public class Inventory : MonoBehaviour
     public void HealthUpdate()
     {
         if(SaveScript.PlayerHealth == 100) return;
+
+        MyPlayer.clip = AppleBiteSound;
+        MyPlayer.Play();
+        
         SaveScript.PlayerHealth += 10;
         SaveScript.HealthChanged = true;
         SaveScript.Apples -= 1;
@@ -109,6 +117,10 @@ public class Inventory : MonoBehaviour
     public void BatteryUpdate()
     {
         if(SaveScript.BatteryPower == 1.0f) return;
+        
+        MyPlayer.clip = BatteryChange;
+        MyPlayer.Play();
+
         SaveScript.BatteryRefill = true;
         SaveScript.Batteries -= 1;
 
