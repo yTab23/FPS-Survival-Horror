@@ -50,6 +50,26 @@ public class Pickups : MonoBehaviour
                     }
                 }
             }
+            else if(hit.transform.tag == "Knife")
+            {
+                CanSeePickup = true;
+            }
+            else if(hit.transform.tag == "Gun")
+            {
+                CanSeePickup = true;
+            }
+            else if(hit.transform.tag == "Bat")
+            {
+                CanSeePickup = true;
+            }
+            else if(hit.transform.tag == "Axe")
+            {
+                CanSeePickup = true;
+            }
+            else if(hit.transform.tag == "Crossbow")
+            {
+                CanSeePickup = true;
+            }
             else
             {
                 CanSeePickup = false;

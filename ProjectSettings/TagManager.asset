@@ -8,6 +8,11 @@ TagManager:
   - Carryable
   - Apple
   - Battery
+  - Knife
+  - Axe
+  - Gun
+  - Crossbow
+  - Bat
   layers:
   - Default
   - TransparentFX
